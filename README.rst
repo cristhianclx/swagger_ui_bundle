@@ -1,5 +1,10 @@
-swagger_ui_bundle
-=================
+swagger-ui-bundle-v2
+===================
+
+**Forked from** `spec-first/swagger_ui_bundle <https://github.com/spec-first/swagger_ui_bundle>`_.
+We maintain this fork to keep the bundled Swagger UI up to date with newer
+releases.
+
 This package contains the static files for swagger-ui as a python package.
 
 Basic configuration options are templated with the Jinja2 templating language.

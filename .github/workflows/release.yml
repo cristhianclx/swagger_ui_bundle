@@ -14,31 +14,28 @@ jobs:
       id-token: write
     steps:
     - uses: actions/checkout@master
-
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v1
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v6.2.0
       with:
-        python-version: '3.10'
-
+        python-version: '3.11'
     - name: Update version
-      run: sed -i "s/^version = .*/version = '${{github.ref_name}}'/" pyproject.toml
-
+      run: |
+        VER="${{ github.event.release.tag_name || github.ref_name }}"
+        sed -i "s/^version = .*/version = '${VER#v}'/" pyproject.toml
     - name: Build a binary wheel and a source tarball
       run: |
         pip install poetry
         poetry build
-
     - name: Publish distribution 📦 to Test PyPI
       if: github.event_name == 'push'
-      uses: pypa/gh-action-pypi-publish@v1.8.6
+      uses: pypa/gh-action-pypi-publish@v1.13.0
       with:
-          name: testpypi
-          repository_url: https://test.pypi.org/legacy/
-          url: https://test.pypi.org/p/swagger-ui-bundle
-
+        name: testpypi
+        repository_url: https://test.pypi.org/legacy/
+        url: https://test.pypi.org/p/swagger-ui-bundle-v2
     - name: Publish distribution 📦 to PyPI if triggered by release
       if: github.event_name == 'release'
-      uses: pypa/gh-action-pypi-publish@v1.8.6
+      uses: pypa/gh-action-pypi-publish@v1.13.0
       with:
         name: pypi
-        url: https://pypi.org/p/swagger-ui-bundle
+        url: https://pypi.org/p/swagger-ui-bundle-v2
