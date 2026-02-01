@@ -2,6 +2,7 @@
 name = "swagger-ui-bundle-v2"
 version = '1.0.0'
 description = "Swagger UI bundled for usage with Python"
+packages = [{include = "swagger_ui_bundle"}]
 readme = "README.rst"
 keywords = ["swagger-ui"]
 license = "Apache-2.0"

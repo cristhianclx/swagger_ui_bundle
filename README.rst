@@ -62,6 +62,24 @@ desired configuration like so:
 Have a look at `example.py` for a complete server for the Flask webserver.
 
 
+Publishing
+==========
+
+Test PyPI (tag = ``X.Y.Z``, no ``v``)::
+
+  git tag 1.0.0
+  git push origin 1.0.0
+
+  pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ swagger-ui-bundle-v2
+
+Production: tag + push, then GitHub **Releases** → Create release for that tag → Publish.::
+
+  git tag 1.0.0
+  git push origin 1.0.0
+
+  pip install swagger-ui-bundle-v2
+
+
 License
 =======
 Since this is just repackaging swagger-ui releases, the license comes from
